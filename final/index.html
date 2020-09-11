@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>400430 - Oğuzcan UZUNÖNER</title>
+    <style>
+        body{
+            background-color: #7be0adff;
+        }
+        #genel{
+            width: 1024px;
+            height: 500px;
+            background-color: #e7e3e3;
+            position: absolute;
+            top: 55px;
+            left: 150px;
+        }
+        #yazi{
+            width: 905px;
+            height: 100px;
+            background-color: grey;
+            position: absolute;
+            top: 150px;
+            left: 35px;
+            float: left;
+            text-align: center;
+        }
+        #metinalaniyer{
+            position: absolute;
+            top: 25px;
+            left: 35px;
+            width: 100px;
+            height: 50px;
+        }
+        #sonucyer{
+            position: absolute;
+            top: 350px;
+            left: 35px;
+            width: 55px;
+            height: 50px;
+        }
+
+        #arkaplan{
+            width: 905px;
+            height: 75px;
+            background-color: grey;
+            position: absolute;
+            top: 270px;
+            left: 35px;
+            float: left;
+            text-align: center;
+        }
+        
+    </style>
+
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=MuseoModerno:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Balsamiq+Sans:wght@700&display=swap" rel="stylesheet">
+    
+
+</head>
+<body>
+    <div id ="genel"> 
+        <div id="metinalaniyer">Metin Alanı <textarea onkeyup="sonucGoster()" name="metinalani" id="metinalani" cols="110" rows="5" style="resize: none;"></textarea></div>
+        <div id="yazi">
+            Yazı Tipi <select name="yazitipi" id="yazitipisecim" onchange="yazitipi()">
+                <option value="'Source Sans Pro', sans-serif">Source Sans Pro</option>
+                <option value="'MuseoModerno', cursive">MuseoModerno</option>
+                <option value="'Noto Sans TC', sans-serif">Noto Sans</option>
+                <option value="'Playfair Display', serif">Playfair Display</option>
+                <option value="'Balsamiq Sans', cursive">Balsamiq Sans</option>
+            </select>
+            Yazı Boyutu:<input type="range" min="15" max="45" id="yaziboyutu" value="15" onmousemove="yaziBuyukluguDegis()">
+            Yazı Rengi : <input type="color"  id="yazirengi" onchange="yaziDegis()">
+            
+        </div>
+        <div id="arkaplan">
+            Border Stili = <select name="borderstilisecim" id="borderstilisecim" onchange="borderstil()">
+                <option value="solid">Solid</option>
+                <option value="dashed">Dashed</option>
+                <option value="dotted">Dotted</option>
+            </select>
+            Border Kalınlığı : <input type="range" min="1" max="5" id="borderkalinlik" value="1" onmousemove="borderkalinlikDegis()">
+            Border Rengi : <input type="color" value="#0000FF" id="borderrengi" selected="blue" onchange="borderrengiDegis()">
+            Arka Plan Rengi : <input type="color" value="#ffffff" id="borderarkaplan" onchange="borderarkaplanDegis()">
+        </div>
+        
+        <div id="sonucyer">Sonuç  <textarea id="sonuc" readonly  style="border-color:#0000FF; width: 905px; height: 100px; resize : none; font-family: 'Source Sans Pro', sans-serif ; border-width: 1px;"  ></textarea></div>
+    </div>
+    <script>
+        function yaziDegis(){
+            document.getElementById("sonuc").style.color=document.getElementById("yazirengi").value;
+        }
+
+        function yaziBuyukluguDegis(){
+            document.getElementById("sonuc").style.fontSize=document.getElementById("yaziboyutu").value + "px";
+        }
+
+        function yazitipi(){
+            document.getElementById("sonuc").style.fontFamily=document.getElementById("yazitipisecim").value;
+        }
+
+        function sonucGoster(){
+            document.getElementById("sonuc").innerHTML="";
+            var sonucc=document.getElementById("metinalani").value;
+            document.getElementById("sonuc").innerHTML+=sonucc
+            
+        }
+
+        function borderstil(){
+            document.getElementById("sonuc").style.borderStyle=document.getElementById("borderstilisecim").value;
+            
+        }
+        
+        function borderkalinlikDegis(){
+            document.getElementById("sonuc").style.borderWidth=document.getElementById("borderkalinlik").value + "px";
+        }
+
+        function borderrengiDegis(){
+            document.getElementById("sonuc").style.borderColor=document.getElementById("borderrengi").value;
+        }
+
+        function borderarkaplanDegis(){
+            document.getElementById("sonuc").style.backgroundColor=document.getElementById("borderarkaplan").value;
+        }
+    </script>
+</body>
+</html> 
